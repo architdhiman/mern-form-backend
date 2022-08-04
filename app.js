@@ -1,6 +1,6 @@
 // mongodb+srv://archit:<password>@cluster0.cnhwcoj.mongodb.net/<dbname>
 // mongodb+srv://archit:atlasrocks@cluster0.cnhwcoj.mongodb.net/test
-
+const cors =require('cors')
 const dotenv = require("dotenv");
 const mongoose = require('mongoose');
 const express = require('express');
@@ -11,6 +11,13 @@ require('./db/conn')
 
 app.use(express.json())  //json data vscode pad nahi skta toh express mai hota h json ka fn toh uski wajah se padwayenge
 
+app.use(
+    cors({
+      origin: ["http://localhost:3000", "http://localhost:3001"],
+      credentials: true,
+    })
+  );
+  
 //we linked the router files to make our routes easy
 app.use(require ('./router/auth'))
 
